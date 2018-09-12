@@ -25,4 +25,10 @@ public class Dado {
         System.out.println("FACE = " + face);      
     }
     
+    public int getFace()
+    {
+        return face;
+    }
+    
 }
+

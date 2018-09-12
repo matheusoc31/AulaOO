@@ -9,15 +9,13 @@ package atividade;
  *
  * @author Ufjf
  */
-public class Bozo {
+public class Tabuleiro {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        
-        
+    private int tabela[] = new int[13];
+
+    public void zerar() {
+        for (int i = 0; i < 13; i++) {
+            tabela[i] = -1;
+        }
     }
-    
 }
