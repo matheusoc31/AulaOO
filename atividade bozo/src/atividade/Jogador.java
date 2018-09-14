@@ -24,6 +24,10 @@ public class Jogador {
         }
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public void jogada() {
         Scanner ler = new Scanner(System.in);
         String resp;
@@ -41,6 +45,7 @@ public class Jogador {
                     if (resp == "sim") {
                         for (int a = 1; a <= 5; a++) {
                             System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? /n");
+                            System.out.println("RESPOSTA: ");
                             resp = ler.next();
                             if (resp == "sim") {
                                 d[a - 1].rolagem();
@@ -54,6 +59,7 @@ public class Jogador {
                     if (resp == "sim") {
                         for (int a = 1; a <= 5; a++) {
                             System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? /n ");
+                            System.out.println("RESPOSTA: ");
                             resp = ler.next();
                             if (resp == "sim") {
                                 d[a - 1].rolagem();
@@ -70,23 +76,80 @@ public class Jogador {
         Scanner ler = new Scanner(System.in);
         String resp;
 
-        System.out.println("CONFORME A SUA JOGADA, QUAL MARCAÇÃO VOCE DESEJAR FAZER (FAVOR ESCREVER EM LETRAS MINUSCULAS E SEM ESPACO) /n");
+        System.out.println("---CARTAO DE MARCACAO--- /n");
+        System.out.println("ACES: "+tab[0]+"DOIS: "+tab[1]+"TRES: "+tab[2]+"QUADROS: "+tab[3]+"/n");
+        System.out.println("CINCOS: "+tab[4]+"SEIS: "+tab[5]+"TRINCA: "+tab[6]+"QUADRA: "+tab[7]+"/n");
+        System.out.println("FULL HOUSE: "+tab[8]+"SEQ CURTA: "+tab[9]+"SEQ LONGA: "+tab[10]+"BOZO: "+tab[11]+"/n");
+        System.out.println("BOZO BONUS: "+tab[12]+"/n");
+
+        System.out.println("CONFORME A SUA JOGADA, QUAL MARCAÇÃO VOCE DESEJAR FAZER (FAVOR ESCREVER EM LETRAS MINUSCULAS E SEM ESPACO) \n");
         for (int i = 0; i < 5; i++) {
             d[i].exibirFace();
         }
+        System.out.println("RESPOSTA: ");
         resp = ler.next();
 
+        int cont = 0;
         switch (resp) {
             case "aces":
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 1) {
+                        cont++;
+                    }
+                }
+                tab[0] = cont * 1;
+                break;
             case "dois":
+                cont = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 2) {
+                        cont++;
+                    }
+                }
+                tab[1] = cont * 2;
+                break;
             case "tres":
-            case "quarta":
-            case "quinta":
-            case "sexta":
+                cont = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 3) {
+                        cont++;
+                    }
+                }
+                tab[2] = cont * 3;
+                break;
+            case "quatros":
+                cont = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 4) {
+                        cont++;
+                    }
+                }
+                tab[3] = cont * 4;
+                break;
+            case "cincos":
+                cont = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 5) {
+                        cont++;
+                    }
+                }
+                tab[4] = cont * 5;
+                break;
+            case "seis":
+                cont = 0;
+                for (int i = 0; i < 5; i++) {
+                    if (d[i].getFace() == 6) {
+                        cont++;
+                    }
+                }
+                tab[5] = cont * 6;
+                break;
             case "trinca":
-                tab[6] = d[0].getFace() + d[1].getFace() + d[2].getFace() + d[3].getFace() + d[4].getFace();
+                tab[6] = d[0].getFace() + d[1].getFace() + d[2].getFace();
+                tab[6] = tab[6] + d[3].getFace() + d[4].getFace();
             case "quadra":
-                tab[7] = d[0].getFace() + d[1].getFace() + d[2].getFace() + d[3].getFace() + d[4].getFace();
+                tab[7] = d[0].getFace() + d[1].getFace() + d[2].getFace();
+                tab[7] = tab[7] + d[3].getFace() + d[4].getFace();
             case "fullhouse":
                 tab[8] = 25;
                 break;
@@ -99,11 +162,15 @@ public class Jogador {
                 break;
 
             case "bozo":
-                tab[11] = 50;
-                break;
-
-            case "bozobonus":
-                tab[12] = 100;
+                if (tab[11] == -1) {
+                    tab[11] = 50;
+                } else {
+                    if (tab[11] == 0) {
+                        tab[12] = 50;
+                    } else {
+                        tab[12] = 100;
+                    }
+                }
                 break;
 
             default:
@@ -112,8 +179,28 @@ public class Jogador {
                         tab[i] = 0;
                     }
                 }
+        }
+    }
 
+    public int bonus() {
+        int cont = 0;
+        for (int i = 0; i < 5; i++) {
+            cont = cont + tab[i];
+        }
+        if (cont >= 63) {
+            return 35;
+        } else {
+            return 0;
         }
 
     }
+
+    public int pontuacao() {
+        int pont = 0;
+        for (int i = 0; i < 13; i++) {
+            pont = pont + tab[i];
+        }
+        return pont + bonus();
+    }
+
 }

@@ -15,9 +15,15 @@ public class Bozo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        Jogador j1 = new Jogador("Matheus");
+        Jogador j2 = new Jogador("Caio");
+        Jogador j3 = new Jogador("Vania");
         
-        
-        
+        Jogo jogo = new Jogo(j1,j2,j3);
+        jogo.partida();
+        jogo.vencedor();
+
     }
-    
+
 }
