@@ -12,23 +12,25 @@ import java.util.Random;
  * @author Ufjf
  */
 public class Dado {
-    private int lados= 6;
+
+    private int lados = 6;
     private int face;
-    
-    public void rolagem()
-    {
-           face = ((int)Math.random()*6)+1;
+
+    public void rolagem() {
+        Random gerador = new Random(System.currentTimeMillis());
+        face = gerador.nextInt() % 6;
+        if (face < 0) {
+        face = gerador.nextInt() % 6;
+        }
+
     }
-    
-    public void exibirFace()
-    {
-        System.out.println("FACE = " + face);      
+
+    public void exibirFace() {
+        System.out.println("--FACE = " + face);
     }
-    
-    public int getFace()
-    {
+
+    public int getFace() {
         return face;
     }
-    
-}
 
+}

@@ -23,7 +23,7 @@ public class Jogo {
     }
 
     public void partida() {
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 3; i++) {
             jogadores[0].jogada();
             jogadores[0].marcacao();
             jogadores[1].jogada();

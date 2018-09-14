@@ -22,6 +22,9 @@ public class Jogador {
         for (int i = 0; i < 13; i++) {
             tab[i] = -1;
         }
+        for (int i = 0; i < 5; i++) {
+            d[i] = new Dado();
+        }
     }
 
     public String getNome() {
@@ -40,28 +43,30 @@ public class Jogador {
                 }
             } else {
                 if (j == 2) {
-                    System.out.println("DESEJA ALTERAR ALGUM VALOR NA SEGUNDA JOGADA? (sim ou nao) /n");
+                    System.out.println("DESEJA ALTERAR ALGUM VALOR NA SEGUNDA JOGADA? (sim ou nao) \n");
+                    System.out.println("RESPOSTA: ");
                     resp = ler.next();
-                    if (resp == "sim") {
-                        for (int a = 1; a <= 5; a++) {
-                            System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? /n");
+                    if (resp.equals("sim")) {
+                        for (int a = 1; a < 6; a++) {
+                            System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? \n");
                             System.out.println("RESPOSTA: ");
                             resp = ler.next();
-                            if (resp == "sim") {
+                            if ("sim".equals(resp)) {
                                 d[a - 1].rolagem();
                                 d[a - 1].exibirFace();
                             }
                         }
                     }
                 } else {
-                    System.out.println("DESEJA ALTERAR ALGUM VALOR NA TERCEIRA JOGADA? (sim ou nao) /n");
+                    System.out.println("DESEJA ALTERAR ALGUM VALOR NA TERCEIRA JOGADA? (sim ou nao) \n");
+                    System.out.println("RESPOSTA: ");
                     resp = ler.next();
-                    if (resp == "sim") {
+                    if ("sim".equals(resp)) {
                         for (int a = 1; a <= 5; a++) {
-                            System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? /n ");
+                            System.out.println("DESEJA JOGAR O DADO " + a + " NOVAMENTE? \n ");
                             System.out.println("RESPOSTA: ");
                             resp = ler.next();
-                            if (resp == "sim") {
+                            if ("sim".equals(resp)) {
                                 d[a - 1].rolagem();
                                 d[a - 1].exibirFace();
                             }
@@ -77,10 +82,10 @@ public class Jogador {
         String resp;
 
         System.out.println("---CARTAO DE MARCACAO--- /n");
-        System.out.println("ACES: "+tab[0]+"DOIS: "+tab[1]+"TRES: "+tab[2]+"QUADROS: "+tab[3]+"/n");
-        System.out.println("CINCOS: "+tab[4]+"SEIS: "+tab[5]+"TRINCA: "+tab[6]+"QUADRA: "+tab[7]+"/n");
-        System.out.println("FULL HOUSE: "+tab[8]+"SEQ CURTA: "+tab[9]+"SEQ LONGA: "+tab[10]+"BOZO: "+tab[11]+"/n");
-        System.out.println("BOZO BONUS: "+tab[12]+"/n");
+        System.out.println("ACES: " + tab[0] + " DOIS: " + tab[1] + " TRES: " + tab[2] + " QUADROS: " + tab[3] + "/n");
+        System.out.println(" CINCOS: " + tab[4] + " SEIS: " + tab[5] + " TRINCA: " + tab[6] + " QUADRA: " + tab[7] + "/n");
+        System.out.println(" FULL HOUSE: " + tab[8] + " SEQ CURTA: " + tab[9] + " SEQ LONGA: " + tab[10] + " BOZO: " + tab[11] + "/n");
+        System.out.println(" BOZO BONUS: " + tab[12] + "/n");
 
         System.out.println("CONFORME A SUA JOGADA, QUAL MARCAÇÃO VOCE DESEJAR FAZER (FAVOR ESCREVER EM LETRAS MINUSCULAS E SEM ESPACO) \n");
         for (int i = 0; i < 5; i++) {
