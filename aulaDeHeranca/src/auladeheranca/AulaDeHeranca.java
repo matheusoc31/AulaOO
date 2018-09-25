@@ -5,6 +5,8 @@
  */
 package auladeheranca;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ice
@@ -15,19 +17,38 @@ public class AulaDeHeranca {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Animal animal = new Animal(13,"azul","amarelo");
+
+        Animal animal = new Canino(13, "azul", "amarelo");
         animal.comer();
         animal.dormir();
         animal.som();
+        System.out.println("\n");
+
+        //Cachorro cao = new Cachorro();
+        //cao.comer();
+        //cao.dormir();
+        //cao.som();
         
-        Cachorro cao = new Cachorro();
-        cao.comer();
-        cao.dormir();
-        cao.som();
+        
+        ArrayList<Animal> animais = new ArrayList();
+        animais.add(new Cachorro("cachoro"));
+        animais.add(new Gato("gato"));
+        animais.add(new Leao("leao"));
+        animais.add(new Lobo("lobo"));
+        for (int i = 0; i < animais.size(); i++) {
+            animais.get(i).som();
+            System.out.println(animais.get(i).toString());
+        }
+  
+        Gato gato1 = new Gato();
+        gato1.setINome("Tobias");
+        Gato gato2 = new Gato();
+        gato2.setINome("Tobias");
+        
+        System.out.println("\n" + gato1.equals(gato2));
+
         
         
-        // TODO code application logic here
     }
-    
+
 }

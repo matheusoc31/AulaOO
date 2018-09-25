@@ -9,6 +9,21 @@ package auladeheranca;
  *
  * @author ice
  */
-public class Lobo extends Canino{
-    
+public class Lobo extends Canino {
+
+    public Lobo() {
+    }
+
+    public Lobo(int idade, String raca, String nome) {
+        super(idade, raca, nome);
+    }
+
+    public Lobo(String nome) {
+        super(nome);
+    }
+
+    public void som() {
+        System.out.println("Uivo");
+    }
+
 }

@@ -9,7 +9,21 @@ package auladeheranca;
  *
  * @author ice
  */
-public class Gato extends Felino{
-    
-    
+public class Gato extends Felino {
+
+    public Gato() {
+    }
+
+    public Gato(int idade, String raca, String nome) {
+        super(idade, raca, nome);
+    }
+
+    public Gato(String nome) {
+        super(nome);
+    }
+
+    public void som() {
+        System.out.println("Miado");
+    }
+
 }

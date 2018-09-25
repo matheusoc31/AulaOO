@@ -9,6 +9,22 @@ package auladeheranca;
  *
  * @author ice
  */
-public class Leao extends Felino{
+public class Leao extends Felino {
+
+    public Leao() {
+    }
+
+    public Leao(int idade, String raca, String nome) {
+        super(idade, raca, nome);
+    }
+
+    public Leao(String nome) {
+        super(nome);
+    }
+
     
+    public void som() {
+        System.out.println("Rugido");
+    }
+
 }

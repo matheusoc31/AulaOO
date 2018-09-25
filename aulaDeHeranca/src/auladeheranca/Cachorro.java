@@ -5,17 +5,26 @@
  */
 package auladeheranca;
 
-
 /**
  *
  * @author ice
  */
-public class Cachorro extends Canino{
-    
-    
-    public void som()
-    {
+public class Cachorro extends Canino {
+
+    public Cachorro(int idade, String raca, String nome) {
+        super(idade, raca, nome);
+    }
+
+    public Cachorro(String nome) {
+        super(nome);
+    }
+
+        
+    public Cachorro() {
+    }
+
+    public void som() {
         System.out.println("Latindo");
     }
-    
+
 }

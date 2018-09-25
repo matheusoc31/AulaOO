@@ -5,21 +5,28 @@
  */
 package auladeheranca;
 
+import static java.util.Arrays.equals;
+
 /**
  *
  * @author ice
  */
-public class Animal {
+
+public abstract class Animal {
 
     private int idade;
     private String raca;
     private String nome;
-    
 
     public Animal() {
 
     }
 
+    public Animal(String nome) {
+        this.nome = nome;
+    }
+
+    
     public Animal(int idade, String raca, String nome) {
         this.idade = idade;
         this.raca = raca;
@@ -58,8 +65,16 @@ public class Animal {
         System.out.println("Estou dormindo ");
     }
 
-    public void som() {
-        System.out.println("Estou emitindo som ");
-    }
+    public abstract void som();
 
+    @Override
+    public String toString()
+    {
+        return getNome();
+    }
+    
+   public boolean equals(Animal a)
+   {
+       return this.nome.equals(a.getNome());
+   }
 }
