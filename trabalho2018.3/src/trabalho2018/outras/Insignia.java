@@ -24,16 +24,12 @@ public class Insignia {
         this.nome = nome;
     }
 
-    /*
-    FUNÇÃO GET
-     */
+    /* FUNÇÃO GET */
     public String getNome() {
         return nome;
     }
 
-    /*
-    FUNÇÃO SET
-     */
+    /* FUNÇÃO SET */
     public void setNome(String nome) {
         this.nome = nome;
     }

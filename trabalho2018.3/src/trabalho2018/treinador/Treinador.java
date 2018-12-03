@@ -7,7 +7,7 @@ package trabalho2018.treinador;
 
 import java.util.Scanner;
 import trabalho2018.pokemons.*;
-import trabalho2018.outras.*;
+import java.util.*;
 
 /**
  * Classe para objetos do tipo Treinador onde serão contidos valores e metodos
@@ -95,60 +95,70 @@ public class Treinador {
      * @param t Treinador-Trinador que esta sendo atacado.
      */
     public void turnoP1Jogador(Treinador t) {
-        Scanner ler = new Scanner(System.in);
-        double dano;
-        int n1, n2;
-        if (p1.getHP() > 0) {
-            System.out.println("ATAQUE DO POKEMON 1: " + p1.getNome());
-            System.out.println("Qual pokemon advesario atacar: ");
-            System.out.println("1-" + t.p1.getNome() + " :" + t.p1.getHP());
-            System.out.println("2-" + t.p2.getNome() + " :" + t.p2.getHP());
-            n1 = ler.nextInt();
-            if (t.getP1().getHP() <= 0) {
-                System.out.println("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
-                n1 = 2;
-
-            } else {
-                if (t.getP2().getHP() <= 0) {
-                    System.out.println("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
-                    n1 = 1;
+        try {
+            
+            Scanner ler = new Scanner(System.in);
+            double dano;
+            int n1, n2;
+            if (p1.getHP() > 0) {
+                System.out.println("ATAQUE DO POKEMON 1: " + p1.getNome());
+                System.out.println("Qual pokemon advesario atacar: ");
+                System.out.println("1-" + t.p1.getNome() + " :" + t.p1.getHP());
+                System.out.println("2-" + t.p2.getNome() + " :" + t.p2.getHP());
+                n1 = ler.nextInt();
+                if (t.getP1().getHP() <= 0) {
+                    throw new Exception("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
+ 
+                } else {
+                    if (t.getP2().getHP() <= 0) {
+                        System.out.println("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
+                        n1 = 1;
+                    }
+                }
+                switch (n1) {
+                    case 1:
+                        System.out.println("1- " + p1.getAtq1().getNome() + " ATQ:" + p1.getAtq1().getValor());
+                        System.out.println("2- " + p1.getAtq2().getNome() + " ATQ:" + p1.getAtq2().getValor());
+                        System.out.println("Qual ataque usar: ");
+                        n2 = ler.nextInt();
+                        switch (n2) {
+                            case 1:
+                                dano = p1.ataque(t.getP1(), p1.getAtq1().getValor());
+                                t.getP1().setHP(t.getP1().getHP() - dano);
+                                break;
+                            case 2:
+                                dano = p1.ataque(t.getP1(), p1.getAtq2().getValor());
+                                t.getP1().setHP(t.getP1().getHP() - dano);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        System.out.println("1- " + p1.getAtq1().getNome() + " ATQ:" + p1.getAtq1().getValor());
+                        System.out.println("2- " + p1.getAtq2().getNome() + " ATQ:" + p1.getAtq2().getValor());
+                        System.out.println("Qual ataque usar: ");
+                        n2 = ler.nextInt();
+                        switch (n2) {
+                            case 1:
+                                dano = p1.ataque(t.getP2(), p1.getAtq1().getValor());
+                                t.getP2().setHP(t.getP2().getHP() - dano);
+                                break;
+                            case 2:
+                                dano = p1.ataque(t.getP2(), p1.getAtq2().getValor());
+                                t.getP2().setHP(t.getP2().getHP() - dano);
+                                break;
+                        }
+                        break;
                 }
             }
-            switch (n1) {
-                case 1:
-                    System.out.println("1- " + p1.getAtq1().getNome() + " ATQ:" + p1.getAtq1().getValor());
-                    System.out.println("2- " + p1.getAtq2().getNome() + " ATQ:" + p1.getAtq2().getValor());
-                    System.out.println("Qual ataque usar: ");
-                    n2 = ler.nextInt();
-                    switch (n2) {
-                        case 1:
-                            dano = p1.ataque(t.getP1(), p1.getAtq1().getValor());
-                            t.getP1().setHP(t.getP1().getHP() - dano);
-                            break;
-                        case 2:
-                            dano = p1.ataque(t.getP1(), p1.getAtq2().getValor());
-                            t.getP1().setHP(t.getP1().getHP() - dano);
-                            break;
-                    }
-                    break;
-                case 2:
-                    System.out.println("1- " + p1.getAtq1().getNome() + " ATQ:" + p1.getAtq1().getValor());
-                    System.out.println("2- " + p1.getAtq2().getNome() + " ATQ:" + p1.getAtq2().getValor());
-                    System.out.println("Qual ataque usar: ");
-                    n2 = ler.nextInt();
-                    switch (n2) {
-                        case 1:
-                            dano = p1.ataque(t.getP2(), p1.getAtq1().getValor());
-                            t.getP2().setHP(t.getP2().getHP() - dano);
-                            break;
-                        case 2:
-                            dano = p1.ataque(t.getP2(), p1.getAtq2().getValor());
-                            t.getP2().setHP(t.getP2().getHP() - dano);
-                            break;
-                    }
-                    break;
-            }
+        } catch (InputMismatchException e) {
+            System.out.println("VALOR DIGITADO NAO CORRESPONDE A UM NUMERO!!");
         }
+        catch (Exception e)
+        {
+           System.out.println(e.getMessage());
+           int n1 = 2;
+        }
+
     }
 
     /**

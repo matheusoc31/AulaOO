@@ -76,9 +76,7 @@ public class Pokemon {
         return HP <= 0;
     }
 
-    /*
-    FUNCOES GETTERS
-     */
+    /* FUNCOES GETTERS */
     public String getNome() {
         return nome;
     }
@@ -107,9 +105,7 @@ public class Pokemon {
         return HPcheio;
     }
 
-    /*
-    FUNCOES SETTERS
-     */
+    /* FUNCOES SETTERS */
     public void setNome(String nome) {
         this.nome = nome;
     }

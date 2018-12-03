@@ -55,7 +55,7 @@ public class Ginasio {
     }
 
 
-    /*FUNCOES GETTERS*/
+    /* FUNCOES GETTERS */
     public Treinador getJogador() {
         return jogador;
     }
@@ -72,7 +72,7 @@ public class Ginasio {
         return insignia;
     }
 
-    /*FUNCOES SETTERS*/
+    /* FUNCOES SETTERS */
     public void setJogador(Treinador jogador) {
         this.jogador = jogador;
     }

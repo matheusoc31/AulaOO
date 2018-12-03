@@ -27,9 +27,7 @@ public class Ataque {
         this.valor = valor;
     }
 
-    /*
-    FUNÇÕES GETTERS
-     */
+    /* FUNÇÕES GETTER */
     public String getNome() {
         return nome;
     }
