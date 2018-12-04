@@ -19,6 +19,10 @@ import trabalho2018.outras.*;
 import trabalho2018.ginasio.*;
 import javax.swing.JFrame;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Home
@@ -33,6 +37,7 @@ public class Trabalho {
         Menu menu = new Menu();
         menu.setVisible(true);
 
+        ArrayList<Pokemon> pokemonsUsados = new ArrayList<>();
         /**
          * Instanciação de todos os objetos da classe Ataque utilizados no
          * codigo.
@@ -40,39 +45,32 @@ public class Trabalho {
         Ataque esmagar = new Ataque("Esmagar", 15);
         Ataque explosaoDeRocha = new Ataque("Explosao de Rocha", 12);
         Ataque tumuloDeRocha = new Ataque("Tumulo de Rocha", 12);
-
         Ataque armaDeAgua = new Ataque("Arma de Agua", 15);
         Ataque feixeDeBolhas = new Ataque("Feixe de Bolhas", 15);
         Ataque pulsoDeAgua = new Ataque("Pulso de Agua", 15);
-
         Ataque chicoteDeVinha = new Ataque("Chicote de Vinha", 15);
         Ataque poDoSono = new Ataque("Po do Sono", 10);
         Ataque folhaNavalha = new Ataque("Folha Navalha", 14);
-
         Ataque choqueDoTrovao = new Ataque("Choque do Trovao", 15);
         Ataque electroBall = new Ataque("ElectroBall", 15);
         Ataque faisca = new Ataque("Faisca", 15);
-
         Ataque presaDeFogo = new Ataque("Presa de Fogo", 14);
         Ataque estouroDeChamas = new Ataque("Estouro de Chamas", 15);
         Ataque lancaChamas = new Ataque("Lanca Chamas", 14);
-
         Ataque picadaDeVeneno = new Ataque("Picada de Veneno", 15);
         Ataque gunkShot = new Ataque("Gunk Shot", 10);
         Ataque presaVenenosa = new Ataque("Presa Venenosa", 15);
         Ataque venoshock = new Ataque("Venoshock", 15);
-
         Ataque psybeam = new Ataque("Psybeam", 15);
         Ataque truque = new Ataque("Truque", 15);
         Ataque visaoDoFuturo = new Ataque("Visao do Futuro", 15);
-
         Ataque bonemerang = new Ataque("Bonemerang", 12);
         Ataque birmaniaPisando = new Ataque("Birmania Pisando", 15);
         Ataque ataquedeAreia = new Ataque("Ataque de Areia", 15);
         Ataque escavacao = new Ataque("Escavacao", 15);
-
         /**
-         * Instanciação de objetos da classe Pokemon utilizados no codigo.
+         * Instanciação de objetos da classe Pokemon que serão utilizados pelos
+         * treinadores.
          */
         Pokemon geodude = new Pedra("Geodude", 40, 60, 53, esmagar, explosaoDeRocha);
         Pokemon onix = new Pedra("Onix", 30, 45, 50, esmagar, tumuloDeRocha);
@@ -90,7 +88,27 @@ public class Trabalho {
         Pokemon drowzee = new Psiquico("Drowzee", 60, 48, 45, psybeam, visaoDoFuturo);
         Pokemon cubone = new Terrestre("Cubone", 45, 45, 51, bonemerang, birmaniaPisando);
         Pokemon diglett = new Terrestre("Diglett", 30, 50, 33, ataquedeAreia, escavacao);
+        /**
+         * Instanciação de objetos da classe Pokemons que serão usados pelo
+         * jgador.
+         */
+        Pokemon charmanderJog1 = new Fogo("Charmander", 38, 46, 38, presaDeFogo, lancaChamas);
+        Pokemon squirtleJog1 = new Agua("Squirtle", 43, 48, 56, armaDeAgua, pulsoDeAgua);
+        Pokemon bulbasaurJog1 = new Grama("Bulbasaur", 45, 45, 44, chicoteDeVinha, folhaNavalha);
+        Pokemon geodudeJog1 = new Pedra("Geodude", 40, 60, 53, esmagar, explosaoDeRocha);
+        Pokemon pikachuJog1 = new Eletrico("Pikachu", 35, 50, 40, choqueDoTrovao, electroBall);
+        Pokemon ekansJog1 = new Venenoso("Ekans", 35, 55, 44, picadaDeVeneno, gunkShot);
+        Pokemon mrMimeJog1 = new Psiquico("Mr Mine", 40, 45, 50, psybeam, truque);
+        Pokemon cuboneJog1 = new Terrestre("Cubone", 45, 45, 51, bonemerang, birmaniaPisando);
 
+        Pokemon charmanderJog2 = new Fogo("Charmander", 38, 46, 38, presaDeFogo, lancaChamas);
+        Pokemon squirtleJog2 = new Agua("Squirtle", 43, 48, 56, armaDeAgua, pulsoDeAgua);
+        Pokemon bulbasaurJog2 = new Grama("Bulbasaur", 45, 45, 44, chicoteDeVinha, folhaNavalha);
+        Pokemon geodudeJog2 = new Pedra("Geodude", 40, 60, 53, esmagar, explosaoDeRocha);
+        Pokemon pikachuJog2 = new Eletrico("Pikachu", 35, 50, 40, choqueDoTrovao, electroBall);
+        Pokemon ekansJog2 = new Venenoso("Ekans", 35, 55, 44, picadaDeVeneno, gunkShot);
+        Pokemon mrMimeJog2 = new Psiquico("Mr Mine", 40, 45, 50, psybeam, truque);
+        Pokemon cuboneJog2 = new Terrestre("Cubone", 45, 45, 51, bonemerang, birmaniaPisando);
         /**
          * Instanciação de objetos da classe Treinador utilizados no codigo.
          */
@@ -102,7 +120,6 @@ public class Trabalho {
         Treinador koga = new Treinador("Koga", ekans, zubat);
         Treinador blaine = new Treinador("Blaine", growlithe, vulpix);
         Treinador giovanni = new Treinador("Gioavanni", cubone, diglett);
-
         /**
          * Instanciação de todos os objetos da classe Insginia utilizados no
          * codigo.
@@ -115,7 +132,6 @@ public class Trabalho {
         Insignia lama = new Insignia("Lama");
         Insignia vulcao = new Insignia("Vulcão");
         Insignia terra = new Insignia("Terra");
-
         /**
          * Instanciação de objeto da classe Treinador que sera utilizado pelo
          * usuario. Esse código não foi colocado no bloco try pois já que é um
@@ -124,7 +140,6 @@ public class Trabalho {
         System.out.print("Digite o seu nome: ");
         String jogadorNome = ler.next();
         Treinador jogador = new Treinador(jogadorNome);
-
         /**
          * Instanciação de todos os objetos da classe Ginasio utilizados no
          * codigo.
@@ -137,7 +152,6 @@ public class Trabalho {
         Ginasio ginasioVeneno = new Ginasio(jogador, koga, "GINASIO DE FUSCHIA()", lama);
         Ginasio ginasioFogo = new Ginasio(jogador, blaine, "GINASIO DE CINNABAR()", vulcao);
         Ginasio ginasioTerra = new Ginasio(jogador, giovanni, "GINASIO DE VIRIDIAN()", terra);
-
         try {
             /**
              * Código utilizado para a escolha dos dois pokemons que serão
@@ -151,36 +165,28 @@ public class Trabalho {
                 int n = ler.nextInt();
                 switch (n) {
                     case 1:
-                        Pokemon charmander = new Fogo("Charmander", 38, 46, 38, presaDeFogo, lancaChamas);
-                        jogador.setP1(charmander);
+                        jogador.setP1(charmanderJog1);
                         break;
                     case 2:
-                        Pokemon bulbasaur = new Grama("Bulbasaur", 45, 45, 44, chicoteDeVinha, folhaNavalha);
-                        jogador.setP1(bulbasaur);
+                        jogador.setP1(bulbasaurJog1);
                         break;
                     case 3:
-                        Pokemon squirtle = new Agua("Squirtle", 43, 48, 56, armaDeAgua, pulsoDeAgua);
-                        jogador.setP1(squirtle);
+                        jogador.setP1(squirtleJog1);
                         break;
                     case 4:
-                        Pokemon geodude2 = new Pedra("Geodude", 40, 65, 58, esmagar, explosaoDeRocha);
-                        jogador.setP1(geodude);
+                        jogador.setP1(geodudeJog1);
                         break;
                     case 5:
-                        Pokemon pikachu2 = new Eletrico("Pikachu", 35, 50, 40, choqueDoTrovao, electroBall);
-                        jogador.setP1(pikachu);
+                        jogador.setP1(pikachuJog1);
                         break;
                     case 6:
-                        Pokemon ekans2 = new Venenoso("Ekans", 35, 55, 44, picadaDeVeneno, gunkShot);
-                        jogador.setP1(ekans);
+                        jogador.setP1(ekansJog1);
                         break;
                     case 7:
-                        Pokemon mrMime2 = new Psiquico("Mr Mine", 40, 45, 50, psybeam, truque);
-                        jogador.setP1(mrMime);
+                        jogador.setP1(mrMimeJog1);
                         break;
                     case 8:
-                        Pokemon cubone2 = new Terrestre("Cubone", 45, 45, 52, bonemerang, birmaniaPisando);
-                        jogador.setP1(cubone);
+                        jogador.setP1(cuboneJog1);
                         break;
                     default:
                         System.out.print("NUMERO NAO CORRESPONDE A NENHUM POKEMON, DIGITE NOVAMENTE: ");
@@ -192,43 +198,36 @@ public class Trabalho {
                 int n = ler.nextInt();
                 switch (n) {
                     case 1:
-                        Pokemon charmander = new Fogo("Charmander", 39, 52, 43, presaDeFogo, lancaChamas);
-                        jogador.setP2(charmander);
+                        jogador.setP2(charmanderJog2);
                         break;
                     case 2:
-                        Pokemon bulbasaur = new Grama("Bulbasaur", 45, 49, 49, chicoteDeVinha, folhaNavalha);
-                        jogador.setP2(bulbasaur);
+                        jogador.setP2(bulbasaurJog2);
                         break;
                     case 3:
-                        Pokemon squirtle = new Agua("Squirtle", 44, 48, 56, armaDeAgua, pulsoDeAgua);
-                        jogador.setP2(squirtle);
+                        jogador.setP2(squirtleJog2);
                         break;
                     case 4:
-                        Pokemon geodude2 = new Pedra("Geodude", 40, 65, 58, esmagar, explosaoDeRocha);
-                        jogador.setP2(geodude);
+                        jogador.setP2(geodudeJog2);
                         break;
                     case 5:
-                        Pokemon pikachu2 = new Eletrico("Pikachu", 35, 55, 40, choqueDoTrovao, electroBall);
-                        jogador.setP2(pikachu);
+                        jogador.setP2(pikachuJog2);
                         break;
                     case 6:
-                        Pokemon ekans2 = new Venenoso("Ekans", 35, 60, 44, picadaDeVeneno, gunkShot);
-                        jogador.setP2(ekans);
+                        jogador.setP2(ekansJog2);
                         break;
                     case 7:
-                        Pokemon mrMime2 = new Psiquico("Mr Mine", 40, 45, 56, psybeam, truque);
-                        jogador.setP2(mrMime);
+                        jogador.setP2(mrMimeJog2);
                         break;
                     case 8:
-                        Pokemon cubone2 = new Terrestre("Cubone", 45, 50, 57, bonemerang, birmaniaPisando);
-                        jogador.setP2(cubone);
+                        jogador.setP2(cuboneJog2);
                         break;
                     default:
                         System.out.print("NUMERO NAO CORRESPONDE A NENHUM POKEMON, DIGITE NOVAMENTE: ");
                         break;
                 }
             }
-
+            pokemonsUsados.add(jogador.getP1());
+            pokemonsUsados.add(jogador.getP2());
             Set<Insignia> conjunto = new HashSet<>();
             boolean i;
             int cont = 0;
@@ -254,80 +253,67 @@ public class Trabalho {
                         int n = ler.nextInt();
                         switch (n) {
                             case 1:
-                                Pokemon charmander3 = new Fogo("Charmander", 39, 52, 43, presaDeFogo, lancaChamas);
-                                jogador.setP1(charmander3);
+                                jogador.setP1(charmanderJog1);
                                 break;
                             case 2:
-                                Pokemon bulbasaur3 = new Grama("Bulbasaur", 45, 49, 49, chicoteDeVinha, folhaNavalha);
-                                jogador.setP1(bulbasaur3);
+                                jogador.setP1(bulbasaurJog1);
                                 break;
                             case 3:
-                                Pokemon squirtle3 = new Agua("Squirtle", 44, 48, 56, armaDeAgua, pulsoDeAgua);
-                                jogador.setP1(squirtle3);
+                                jogador.setP1(squirtleJog1);
                                 break;
                             case 4:
-                                Pokemon geodude3 = new Pedra("Geodude", 40, 65, 58, esmagar, explosaoDeRocha);
-                                jogador.setP1(geodude3);
+                                jogador.setP1(geodudeJog1);
                                 break;
                             case 5:
-                                Pokemon pikachu3 = new Eletrico("Pikachu", 35, 55, 40, choqueDoTrovao, electroBall);
-                                jogador.setP1(pikachu3);
+                                jogador.setP1(pikachuJog1);
                                 break;
                             case 6:
-                                Pokemon ekans3 = new Venenoso("Ekans", 35, 60, 44, picadaDeVeneno, gunkShot);
-                                jogador.setP1(ekans3);
+                                jogador.setP1(ekansJog1);
                                 break;
                             case 7:
-                                Pokemon mrMime3 = new Psiquico("Mr Mine", 40, 45, 56, psybeam, truque);
-                                jogador.setP1(mrMime3);
+                                jogador.setP1(mrMimeJog1);
                                 break;
                             case 8:
-                                Pokemon cubone3 = new Terrestre("Cubone", 45, 50, 57, bonemerang, birmaniaPisando);
-                                jogador.setP1(cubone3);
+                                jogador.setP1(cuboneJog1);
                                 break;
                             default:
                                 break;
                         }
-
                         System.out.print("Qual pokemon voce deseja trocar pelo seu " + jogador.getP2().getNome() + " :");
                         n = ler.nextInt();
                         switch (n) {
                             case 1:
-                                Pokemon charmander3 = new Fogo("Charmander", 39, 52, 43, presaDeFogo, lancaChamas);
-                                jogador.setP2(charmander3);
+                                jogador.setP2(charmanderJog2);
+                                pokemonsUsados.add(jogador.getP2());
                                 break;
                             case 2:
-                                Pokemon bulbasaur3 = new Grama("Bulbasaur", 45, 49, 49, chicoteDeVinha, folhaNavalha);
-                                jogador.setP2(bulbasaur3);
+                                jogador.setP2(bulbasaurJog2);
                                 break;
                             case 3:
-                                Pokemon squirtle3 = new Agua("Squirtle", 44, 48, 56, armaDeAgua, pulsoDeAgua);
-                                jogador.setP2(squirtle3);
+                                jogador.setP2(squirtleJog2);
                                 break;
                             case 4:
-                                Pokemon geodude3 = new Pedra("Geodude", 40, 65, 58, esmagar, explosaoDeRocha);
-                                jogador.setP2(geodude3);
+                                jogador.setP2(geodudeJog2);
                                 break;
                             case 5:
-                                Pokemon pikachu3 = new Eletrico("Pikachu", 35, 55, 40, choqueDoTrovao, electroBall);
-                                jogador.setP2(pikachu3);
+                                jogador.setP2(pikachuJog2);
                                 break;
                             case 6:
-                                Pokemon ekans3 = new Venenoso("Ekans", 35, 60, 44, picadaDeVeneno, gunkShot);
-                                jogador.setP2(ekans3);
+                                jogador.setP2(ekansJog2);
                                 break;
                             case 7:
-                                Pokemon mrMime3 = new Psiquico("Mr Mine", 40, 45, 56, psybeam, truque);
-                                jogador.setP2(mrMime3);
+                                jogador.setP2(mrMimeJog2);
                                 break;
                             case 8:
-                                Pokemon cubone3 = new Terrestre("Cubone", 45, 50, 57, bonemerang, birmaniaPisando);
-                                jogador.setP2(cubone3);
+                                jogador.setP2(cuboneJog2);
                                 break;
                             default:
                                 break;
                         }
+                    pokemonsUsados.add(jogador.getP1());
+                    pokemonsUsados.add(jogador.getP2());
                     }
+                    
                 }
                 System.out.println("\n ESCOLHA UM GINASIO PARA DESAFIAR: ");
                 System.out.println("1:" + ginasioRocha.getNome() + " 2:" + ginasioAgua.getNome());
@@ -484,15 +470,28 @@ public class Trabalho {
                     default:
                         System.out.println("ESSE NUMERO NAO CORRESPONDE A NENHUM GINASIO, DIGITE NOVAMENTE: ");
                         break;
-
                 }
             }
-
-            System.out.println("\n PARABENS!! TODOS OS LIDERES DE GINASIO FORAM DERROTADOS!!");
+            System.out.println("PARABENS!! TODOS OS LIDERES DE GINASIO FORAM DERROTADOS!!");
             System.out.println("VOCE AGORA PODE ENTRAR NA LIGA POKEMON!! PARABENS");
 
         } catch (InputMismatchException e) {
             System.out.println("VALOR DIGITADO NAO CORRESPONDE AO PEDIDO!!");
         }
+        /**
+         * Código utilizado para salvar em um arquivo txt todos os pokemons
+         * utilizados pelo usuario durante o jogo.
+         */
+        File arq = new File("Vencedores.txt");
+        try (FileWriter w = new FileWriter(arq)) {
+            w.write("PARABENS " + jogadorNome + "! Voce derrotou todos os lideres usando os seguintes pokemons: ");
+            for (int i = 0; i < pokemonsUsados.size(); i++) {
+                w.write(pokemonsUsados.get(i).getNome() + " ");
+            }
+            w.flush();
+        } catch (IOException exe) {
+            exe.printStackTrace();
+        }
+
     }
 }

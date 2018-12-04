@@ -96,7 +96,6 @@ public class Treinador {
      */
     public void turnoP1Jogador(Treinador t) {
         try {
-            
             Scanner ler = new Scanner(System.in);
             double dano;
             int n1, n2;
@@ -107,9 +106,9 @@ public class Treinador {
                 System.out.println("2-" + t.p2.getNome() + " :" + t.p2.getHP());
                 n1 = ler.nextInt();
                 if (t.getP1().getHP() <= 0) {
-                    throw new Exception("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
- 
-                } else {
+                System.out.println("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
+                n1 = 2;
+            } else {
                     if (t.getP2().getHP() <= 0) {
                         System.out.println("ESSE POKEMON ESTA FORA DE COMBATE!! DIRECIONANDO ATAQUE PARA O OUTRO POKEMON.\n");
                         n1 = 1;
